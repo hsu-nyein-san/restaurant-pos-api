@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\RestaurantTableController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,4 @@ Route::controller(AuthController::class)->group(function() {
 
 Route::apiResource('categories',CategoryController::class);
 Route::apiResource('products',ProductController::class);
+Route::apiResource('restaurant-tables',RestaurantTableController::class);
