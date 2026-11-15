@@ -31,7 +31,7 @@ class CategoryController extends Controller
         return response()->json([
             'message'=>'Category stored successfully',
             'data'=>new CategoryResource($category)
-        ]);
+        ],200);
     }
 
     /**
@@ -54,7 +54,7 @@ class CategoryController extends Controller
         return response()->json([
             'message'=>'Category updated successfully',
             'data'=>new CategoryResource($category->fresh())
-        ]);
+        ],200);
     }
 
     /**
@@ -66,6 +66,6 @@ class CategoryController extends Controller
 
         return response()->json([
             'message'=>'Category deleted successfully'
-        ]);
+        ],200);
     }
 }
