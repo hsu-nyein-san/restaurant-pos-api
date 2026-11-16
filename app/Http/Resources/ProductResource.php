@@ -22,7 +22,7 @@ class ProductResource extends JsonResource
             'price'=>$this->price,
             'cost_price'=>$this->cost_price,
             'stock_quantity'=>$this->stock_quantity,
-            'image'=>$this->image,
+            'image'=>$this->image ? asset('storage/' . $this->image) : null,
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at
         ];

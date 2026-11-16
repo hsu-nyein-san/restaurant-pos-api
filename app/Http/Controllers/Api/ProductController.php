@@ -7,6 +7,7 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -26,6 +27,12 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $validated=$request->validated();
+
+        if($request->hasFile('image'))
+            {
+                $validated['image']=$request->file('image')->store('products','public');
+            }
+
 
         $product=Product::create($validated);
 
@@ -49,6 +56,18 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $validated=$request->validated();
+
+        if($request->hasFile('image'))
+        {
+            if($product->image && Storage::disk('public')->exists($product->image))
+                {
+                    Storage::disk('public')->delete($product->image);
+                }
+
+            $validated['image']=$request->file('image')->store('products','public');
+        }
+
+        
 
         $product->update($validated);
 
